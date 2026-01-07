@@ -41,6 +41,10 @@ describe("PaymentList", () => {
           { id: "2", merchantDisplayName: "CDiscount", paymentPlan: [] },
         ],
       },
+      filteredPayments: [
+        { id: "1", merchantDisplayName: "Amazon", paymentPlan: [] },
+        { id: "2", merchantDisplayName: "CDiscount", paymentPlan: [] },
+      ],
     });
 
     render(
@@ -51,5 +55,29 @@ describe("PaymentList", () => {
 
     expect(screen.getByText("Amazon")).toBeInTheDocument();
     expect(screen.getByText("CDiscount")).toBeInTheDocument();
+  });
+
+  it("should only show filtered payment", () => {
+    mockUsePaymentContext.mockReturnValue({
+      loadingList: false,
+      paymentPage: {
+        payments: [
+          { id: "1", merchantDisplayName: "Amazon", paymentPlan: [] },
+          { id: "2", merchantDisplayName: "CDiscount", paymentPlan: [] },
+        ],
+      },
+      filteredPayments: [
+        { id: "1", merchantDisplayName: "Amazon", paymentPlan: [] },
+      ],
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <PaymentList />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByText("Amazon")).toBeInTheDocument();
+    expect(screen.queryByText("CDiscount")).not.toBeInTheDocument();
   });
 });

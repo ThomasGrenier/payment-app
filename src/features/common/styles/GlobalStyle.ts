@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
         font-family: "Montserrat", system-ui, -apple-system, BlinkMacSytemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-        background-color: ${({ theme }) => theme.colors.background};
+        background-color: ${({ theme }) => theme.colors.backgroundColor.app};
         color: ${({ theme }) => theme.colors.text.black};
     }
     

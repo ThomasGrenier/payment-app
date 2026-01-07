@@ -8,6 +8,7 @@ import {
   PaymentTotalAmountLeftToPayStyled,
 } from "./PaymentPage.style";
 import { useTranslation } from "../../../common/hooks/useTranslation";
+import { PaymentChips } from "../PaymentsChips/PaymentChips";
 
 export const PaymentPage = () => {
   const paymentContext = usePaymentContext();
@@ -20,6 +21,7 @@ export const PaymentPage = () => {
           amount: paymentContext.paymentPage?.totalAmountLeftToPay || 0,
         })}
       </PaymentTotalAmountLeftToPayStyled>
+      <PaymentChips />
       <PaymentContainer>
         <PaymentList />
         <PaymentDetails />

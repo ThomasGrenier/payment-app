@@ -5,12 +5,13 @@ export const PaymentPageContainer = styled.div`
 `;
 
 export const PaymentPageTitleStyled = styled.h2`
-  color: ${({ theme }) => theme.colors.almaOrange};
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  color: ${({ theme }) => theme.colors.brand.primary};
+  font-size: ${({ theme }) => theme.typography.size.xl};
 `;
+
 export const PaymentTotalAmountLeftToPayStyled = styled.h1`
   color: ${({ theme }) => theme.colors.text.black};
-  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-size: ${({ theme }) => theme.typography.size.lg};
 `;
 
 export const PaymentContainer = styled.div`

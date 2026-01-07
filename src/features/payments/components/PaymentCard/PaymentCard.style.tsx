@@ -3,20 +3,27 @@ import type { PaymentState } from "../../types/Payment.types";
 
 export const PaymentCardStyled = styled.div<{ selected: boolean }>`
   display: flex;
-  align-items: center;
+  justify-content: space-around;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text.black};
 
   background-color: ${({ selected, theme }) =>
-    selected ? theme.colors.backgroundSelected : theme.colors.background};
+    selected
+      ? theme.colors.backgroundColor.selected
+      : theme.colors.backgroundColor.card};
 
-  //box-shadow: 0 0.375rem 1rem -0.1875rem rgba(107, 134, 177, 0.25);
-  border: 2px solid ${({ theme }) => theme.colors.almaOrange};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border: 2px solid
+    ${({ selected, theme }) =>
+      selected ? theme.colors.border.selected : theme.colors.border.default};
+
+  border-radius: ${({ theme }) => theme.radius.xs};
   padding: ${({ theme }) => theme.spacing.md};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.backgroundHover};
+    background-color: ${({ selected, theme }) =>
+      selected
+        ? theme.colors.backgroundColor.selected
+        : theme.colors.backgroundColor.hover};
   }
 `;
 
@@ -28,22 +35,28 @@ export const PaymentCardInfosStyled = styled.div`
 `;
 
 export const PaymentMerchantStyled = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-size: ${({ theme }) => theme.typography.size.lg};
+  font-weight: ${({ theme }) => theme.typography.weight.bold};
 `;
 
 export const PaymentCreatedDateStyled = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-size: ${({ theme }) => theme.typography.size.xs};
+`;
+
+export const PaymentPlanStyled = styled.div`
+  font-size: ${({ theme }) => theme.typography.size.xs};
 `;
 
 export const PaymentPurchaseAmountStyled = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: ${({ theme }) => theme.typography.size.sm};
 `;
+
 export const LogoCardContentStyled = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "logoUrl",
 })<{ logoUrl: string }>`
-  border: 2px solid ${({ theme }) => theme.colors.almaOrange};
+  border: 2px solid ${({ theme }) => theme.colors.border.default};
 
-  border-radius: 50%;
+  border-radius: ${({ theme }) => theme.radius.xs};
   padding: ${({ theme }) => theme.spacing.sm};
   width: 50px;
   height: 50px;
@@ -54,19 +67,21 @@ export const LogoCardContentStyled = styled.div.withConfig({
 export const PaymentStateStyled = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "status",
 })<{ status: PaymentState }>`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  width: fit-content;
+  font-size: ${({ theme }) => theme.typography.size.xs};
+  border-radius: ${({ theme }) => theme.radius.md};
+  width: 5rem;
+  height: fit-content;
+  text-align: center;
   color: ${({ theme }) => theme.colors.text.white};
   padding: ${({ theme }) => theme.spacing.sm};
   background-color: ${({ theme, status }) => {
     switch (status) {
       case "in_progress":
-        return theme.colors.warning;
+        return theme.colors.info.warning;
       case "late":
-        return theme.colors.error;
+        return theme.colors.info.error;
       case "completed":
-        return theme.colors.success;
+        return theme.colors.info.success;
     }
   }};
 `;

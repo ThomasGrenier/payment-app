@@ -6,16 +6,18 @@ import { PaymentListContainerStyled } from "./PaymentList.style";
 import { useTranslation } from "../../../common/hooks/useTranslation";
 
 export const PaymentList = () => {
-  const { paymentPage, loadingList } = usePaymentContext();
+  const { paymentPage, loadingList, filteredPayments } = usePaymentContext();
   const { t } = useTranslation();
 
   if (loadingList) return <div>{t("Payment.list.loading")}</div>;
 
   if (!paymentPage) return null;
 
+  if (!filteredPayments) return null;
+
   return (
     <PaymentListContainerStyled>
-      {paymentPage.payments.map(
+      {filteredPayments.map(
         (payment: Payment): ReactNode => (
           <div key={payment.id}>
             <PaymentCard payment={payment} />

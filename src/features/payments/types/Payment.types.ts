@@ -39,6 +39,9 @@ export interface PaymentPage {
 export interface PaymentContextValue {
   paymentPage: PaymentPage | null;
   selectedPayment: Payment | null;
+  selectedPaymentState: PaymentState | null;
+  filteredPayments: Payment[] | null;
+  setPaymentState: (paymentState?: PaymentState) => void;
   loadingList: boolean;
   errorList: string | null;
   loadingDetails: boolean;
